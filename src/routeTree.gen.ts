@@ -11,10 +11,12 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as DashboardRouteImport } from './routes/dashboard'
+import { Route as LoginRouteImport } from './routes/login'
 import { Route as NotificationsRouteImport } from './routes/notifications'
 import { Route as OfficesRouteImport } from './routes/offices'
 import { Route as PayRouteImport } from './routes/pay'
 import { Route as ReceiptsRouteImport } from './routes/receipts'
+import { Route as SignupRouteImport } from './routes/signup'
 import { Route as VerifyRouteImport } from './routes/verify'
 
 const IndexRoute = IndexRouteImport.update({
@@ -25,6 +27,11 @@ const IndexRoute = IndexRouteImport.update({
 const DashboardRoute = DashboardRouteImport.update({
   id: '/dashboard',
   path: '/dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
   getParentRoute: () => rootRouteImport,
 } as any)
 const NotificationsRoute = NotificationsRouteImport.update({
@@ -47,6 +54,11 @@ const ReceiptsRoute = ReceiptsRouteImport.update({
   path: '/receipts',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SignupRoute = SignupRouteImport.update({
+  id: '/signup',
+  path: '/signup',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const VerifyRoute = VerifyRouteImport.update({
   id: '/verify',
   path: '/verify',
@@ -56,29 +68,35 @@ const VerifyRoute = VerifyRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/dashboard': typeof DashboardRoute
+  '/login': typeof LoginRoute
   '/notifications': typeof NotificationsRoute
   '/offices': typeof OfficesRoute
   '/pay': typeof PayRoute
   '/receipts': typeof ReceiptsRoute
+  '/signup': typeof SignupRoute
   '/verify': typeof VerifyRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/dashboard': typeof DashboardRoute
+  '/login': typeof LoginRoute
   '/notifications': typeof NotificationsRoute
   '/offices': typeof OfficesRoute
   '/pay': typeof PayRoute
   '/receipts': typeof ReceiptsRoute
+  '/signup': typeof SignupRoute
   '/verify': typeof VerifyRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/dashboard': typeof DashboardRoute
+  '/login': typeof LoginRoute
   '/notifications': typeof NotificationsRoute
   '/offices': typeof OfficesRoute
   '/pay': typeof PayRoute
   '/receipts': typeof ReceiptsRoute
+  '/signup': typeof SignupRoute
   '/verify': typeof VerifyRoute
 }
 export interface FileRouteTypes {
@@ -86,38 +104,46 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/dashboard'
+    | '/login'
     | '/notifications'
     | '/offices'
     | '/pay'
     | '/receipts'
+    | '/signup'
     | '/verify'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/dashboard'
+    | '/login'
     | '/notifications'
     | '/offices'
     | '/pay'
     | '/receipts'
+    | '/signup'
     | '/verify'
   id:
     | '__root__'
     | '/'
     | '/dashboard'
+    | '/login'
     | '/notifications'
     | '/offices'
     | '/pay'
     | '/receipts'
+    | '/signup'
     | '/verify'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   DashboardRoute: typeof DashboardRoute
+  LoginRoute: typeof LoginRoute
   NotificationsRoute: typeof NotificationsRoute
   OfficesRoute: typeof OfficesRoute
   PayRoute: typeof PayRoute
   ReceiptsRoute: typeof ReceiptsRoute
+  SignupRoute: typeof SignupRoute
   VerifyRoute: typeof VerifyRoute
 }
 
@@ -135,6 +161,13 @@ declare module '@tanstack/react-router' {
       path: '/dashboard'
       fullPath: '/dashboard'
       preLoaderRoute: typeof DashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/notifications': {
@@ -165,6 +198,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ReceiptsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/signup': {
+      id: '/signup'
+      path: '/signup'
+      fullPath: '/signup'
+      preLoaderRoute: typeof SignupRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/verify': {
       id: '/verify'
       path: '/verify'
@@ -178,10 +218,12 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   DashboardRoute: DashboardRoute,
+  LoginRoute: LoginRoute,
   NotificationsRoute: NotificationsRoute,
   OfficesRoute: OfficesRoute,
   PayRoute: PayRoute,
   ReceiptsRoute: ReceiptsRoute,
+  SignupRoute: SignupRoute,
   VerifyRoute: VerifyRoute,
 }
 export const routeTree = rootRouteImport
